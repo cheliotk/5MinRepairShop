@@ -8,6 +8,7 @@ public class BrokenObjectScript : MonoBehaviour
     List<Vector3> partsCorrectPosition;
     List<Quaternion> partsCorrectRotation;
     public List<GameObject> locationsOnShelf;
+    public List<bool> keepPartOnObject;
 
     public float distanceThresholdForCorrectPlacement = 0.1f;
     public float angleThresholdForCurrentPlacement = 5f;
@@ -21,6 +22,7 @@ public class BrokenObjectScript : MonoBehaviour
     void DisassembleObject(){
         partsCorrectPosition = new List<Vector3>();
         partsCorrectRotation = new List<Quaternion>();
+
         foreach(Part p in requiredParts){
             partsCorrectPosition.Add(p.transform.localPosition);
             partsCorrectRotation.Add(p.transform.localRotation);
@@ -31,8 +33,12 @@ public class BrokenObjectScript : MonoBehaviour
     }
 
     void TurnOffLocationsOnShelf(){
-        foreach(GameObject l in locationsOnShelf){
-            l.GetComponent<Renderer>().enabled = false;
+        for (int i = 0; i < locationsOnShelf.Count; i++)
+        {
+            GameObject l = locationsOnShelf[i];
+            if(!keepPartOnObject[i]){
+                l.GetComponent<Renderer>().enabled = false;
+            }
         }
     }
 
