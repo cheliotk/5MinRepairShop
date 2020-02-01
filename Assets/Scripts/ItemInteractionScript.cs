@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemInteractionScript : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class ItemInteractionScript : MonoBehaviour
     public GameObject itemCurrentlyHeld;
 
     public GameObject itemCurrentlyLookedAt;
+
+    [Header("UI info")]
+    public Text itemCurrentlyLookedAt_uiName;
+    public Text itemCurrentlyLookedAt_uiDescription;
+    public bool showName = false;
+    public bool showDescription = false;
 
     bool isCutscenePlaying = true;
 
@@ -43,10 +50,12 @@ public class ItemInteractionScript : MonoBehaviour
         }
         itemCurrentlyLookedAt = newItemCurrentlyLooketAt;
 
-        // string itemName = GetItemInfo(itemCurrentlyLookedAt);
-        // if(itemName != null){
-        //     print(itemName);
-        // }
+        if(itemCurrentlyLookedAt != null){
+            showName = true;
+        }
+        else{
+            showName = false;
+        }
 
         if(hasItem){
             itemCurrentlyHeld.GetComponent<Collider>().enabled = false;
