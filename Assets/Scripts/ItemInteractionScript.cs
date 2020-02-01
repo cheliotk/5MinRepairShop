@@ -41,25 +41,25 @@ public class ItemInteractionScript : MonoBehaviour
             itemCurrentlyHeld.GetComponent<Collider>().enabled = false;
             itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
 
-            if(Input.GetMouseButtonUp(0)){
-                itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
-                itemCurrentlyHeld.GetComponent<Collider>().enabled = true;
+            // if(Input.GetMouseButtonUp(0)){
+            //     itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
+            //     itemCurrentlyHeld.GetComponent<Collider>().enabled = true;
 
-                itemCurrentlyHeld = null;
-                hasItem = false;
-            }
+            //     itemCurrentlyHeld = null;
+            //     hasItem = false;
+            // }
         }
-        else{
-            if(Input.GetMouseButtonUp(0)){
-                if(itemCurrentlyLookedAt != null){
-                    ObjectInfo oi = itemCurrentlyLookedAt.GetComponent<ObjectInfo>();
-                    if(oi != null && oi.isPickable){
-                        hasItem = true;
-                        itemCurrentlyHeld = itemCurrentlyLookedAt;
-                    }
-                }
-            }
-        }
+        // else{
+        //     if(Input.GetMouseButtonUp(0)){
+        //         if(itemCurrentlyLookedAt != null){
+        //             ObjectInfo oi = itemCurrentlyLookedAt.GetComponent<ObjectInfo>();
+        //             if(oi != null && oi.isPickable){
+        //                 hasItem = true;
+        //                 itemCurrentlyHeld = itemCurrentlyLookedAt;
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     string GetItemInfo(GameObject item){
@@ -74,6 +74,30 @@ public class ItemInteractionScript : MonoBehaviour
         }
         else{
             return null;
+        }
+    }
+
+    public void MouseCLicked(bool isPartOnObject){
+        if(hasItem){
+            if(isPartOnObject){
+                HighlightPartOnObject(false);
+                itemCurrentlyLookedAt.GetComponent<BrokenObjectScript>().PlacePartOnObject(itemCurrentlyHeld.GetComponent<Part>());
+            }
+            else{
+                itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
+                itemCurrentlyHeld.GetComponent<Collider>().enabled = true;
+            }
+            itemCurrentlyHeld = null;
+            hasItem = false;
+        }
+        else{
+            if(itemCurrentlyLookedAt != null){
+                ObjectInfo oi = itemCurrentlyLookedAt.GetComponent<ObjectInfo>();
+                if(oi != null && oi.isPickable){
+                    hasItem = true;
+                    itemCurrentlyHeld = itemCurrentlyLookedAt;
+                }
+            }
         }
     }
 
@@ -114,5 +138,18 @@ public class ItemInteractionScript : MonoBehaviour
         }
 
         outline.enabled = true;
+    }
+
+    public void HighlightPartOnObject(bool highlight){
+        Outline outline = itemCurrentlyHeld.GetComponent<Outline>();
+        if(highlight){
+            itemCurrentlyLookedAt.GetComponent<Outline>().enabled = false;
+            outline.enabled = true;
+            outline.OutlineColor = Color.green;
+        }
+        else{
+            itemCurrentlyLookedAt.GetComponent<Outline>().enabled = true;
+            outline.enabled = false;
+        }
     }
 }

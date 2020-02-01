@@ -22,17 +22,26 @@ public class PlayerInputScript : MonoBehaviour
         if(Input.GetButtonUp("Vertical")){
             ii.RotateObjectVert(Input.GetAxis("Vertical"));
         }
+
+        GameObject itemCurrentlyLookedAt = ii.itemCurrentlyLookedAt;
+        bool isPartOnObject = false;
+        if(ii.hasItem
+            && itemCurrentlyLookedAt
+            && itemCurrentlyLookedAt.GetComponent<ObjectInfo>()
+            && itemCurrentlyLookedAt.GetComponent<ObjectInfo>().isBrokenObject){
+            isPartOnObject = ii.itemCurrentlyLookedAt.GetComponent<BrokenObjectScript>().CheckPartIsPlacedCorrectly(ii.itemCurrentlyHeld.GetComponent<Part>());
+            // print(isPartOnObject);
+           ii.HighlightPartOnObject(isPartOnObject);
+        }
+
         //     || Input.GetButtonUp("Vertical")){
             
         //     print(Input.GetAxis("Horizontal") + " | " + Input.GetAxis("Vertical"));
         // }
-        // if(Input.GetKeyUp(KeyCode.W) 
-        //     || Input.GetKeyUp(KeyCode.W)
-        //     || Input.GetKeyUp(KeyCode.W)
-        //     || Input.GetKeyUp(KeyCode.W)){
-            
-            
-        // }
+
+        if(Input.GetMouseButtonUp(0)){
+            ii.MouseCLicked(isPartOnObject);
+        }
     }
 
     public Vector3 GetPositionLookedAt(){
