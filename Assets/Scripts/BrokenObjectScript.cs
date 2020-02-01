@@ -11,9 +11,13 @@ public class BrokenObjectScript : MonoBehaviour
 
     public float distanceThresholdForCorrectPlacement = 0.1f;
     public float angleThresholdForCurrentPlacement = 5f;
-    // Start is called before the first frame update
+    
     void Start()
     {
+        DisassembleObject();
+    }
+
+    void DisassembleObject(){
         partsCorrectPosition = new List<Vector3>();
         partsCorrectRotation = new List<Quaternion>();
         foreach(Part p in requiredParts){
@@ -23,12 +27,6 @@ public class BrokenObjectScript : MonoBehaviour
 
         PlacePartsOnShelf();
         TurnOffLocationsOnShelf();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void TurnOffLocationsOnShelf(){
@@ -62,7 +60,7 @@ public class BrokenObjectScript : MonoBehaviour
 
     public void PlacePartOnObject(Part part){
         part.transform.parent = this.transform;
-        
+
         int index = requiredParts.FindIndex(p => p == part);
         part.transform.localPosition = partsCorrectPosition[index];
         part.transform.localRotation = partsCorrectRotation[index];
