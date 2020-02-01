@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &195396342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -347,15 +347,16 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1576849551}
   m_Father: {fileID: 567054415}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &195396343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,7 +382,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 80
-    m_Alignment: 1
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1235,8 +1236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4773d8a2f11de004ea3650973bbd835f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: part2
-  description: 
+  itemName: Importanter Part
+  description: This is not a very important part. It is mainly used for aesthetic
+    and marketing purposes. It does not affect object operation in any way whatsoever.
+    Object will still not function without it anyway.
   isPickable: 1
   isBrokenObject: 0
 --- !u!65 &363959425
@@ -1538,7 +1541,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh22810
+  m_Name: pb_Mesh30376
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -2990,7 +2993,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23082
+  m_Name: pb_Mesh30662
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -4053,6 +4056,83 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1547578538}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1576849550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1576849551}
+  - component: {fileID: 1576849553}
+  - component: {fileID: 1576849552}
+  m_Layer: 5
+  m_Name: objectDescription
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1576849551
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576849550}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 195396342}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -32}
+  m_SizeDelta: {x: 500, y: 30}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1576849552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576849550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.97001815, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 18
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 80
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1576849553
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576849550}
+  m_CullTransparentMesh: 0
 --- !u!1 &1634233164
 GameObject:
   m_ObjectHideFlags: 0
@@ -4204,7 +4284,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: object (broken)
-  description: 
+  description: It's not pinin'! It's passed on! This object is no more! It has ceased
+    to be! It's expired and gone to meet its maker! It's a stiff! Bereft of life,
+    it rests in peace! If you hadn't nailed it to the perch it'd be pushing up the
+    daisies! Its metabolic processes are now 'istory! It's off the twig! It's kicked
+    the bucket, it's shuffled off its mortal coil, run down the curtain and joined
+    the bleedin' choir invisible!! THIS IS AN EX-OBJECT!!
   isPickable: 0
   isBrokenObject: 1
 --- !u!64 &1727052512
@@ -16638,7 +16723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: {fileID: 195396343}
-  objectDescription: {fileID: 0}
+  objectDescription: {fileID: 1576849552}
   objectNameLine: {fileID: 1268884560}
 --- !u!1 &1841583066
 GameObject:
@@ -17545,8 +17630,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4773d8a2f11de004ea3650973bbd835f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: part1
-  description: 
+  itemName: Important Part
+  description: This is a very important part. It is used to thingy up the whammies
+    in order to fixify the whatamajigs.
   isPickable: 1
   isBrokenObject: 0
 --- !u!65 &2039017842
@@ -17627,7 +17713,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23004
+  m_Name: pb_Mesh30578
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2

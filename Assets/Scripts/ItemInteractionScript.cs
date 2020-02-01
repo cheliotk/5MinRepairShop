@@ -6,6 +6,7 @@ public class ItemInteractionScript : MonoBehaviour
 {
     PlayerInputScript pi;
     CameraControlScript cc;
+    UIScript uis;
 
     [Header("Item Manipulation Properties")]
     public float angleToRotateObject = 45f;
@@ -21,6 +22,7 @@ public class ItemInteractionScript : MonoBehaviour
     public void Init(){
         pi = GetComponent<PlayerInputScript>();
         cc = GetComponent<CameraControlScript>();
+        uis = GameObject.FindObjectOfType<UIScript>();
 
         isCutscenePlaying = false;
     }
@@ -88,6 +90,21 @@ public class ItemInteractionScript : MonoBehaviour
         }
     }
 
+    public string GetItemDescription(GameObject item){
+        if(item != null){
+            ObjectInfo oi = item.GetComponent<ObjectInfo>();
+            if(oi != null){
+                return oi.description;
+            }
+            else{
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
+    }
+
     public void MouseCLicked(bool isPartOnObject){
         if(hasItem){
             if(isPartOnObject){
@@ -113,7 +130,7 @@ public class ItemInteractionScript : MonoBehaviour
     }
 
     public void MouseClickRight(){
-
+        uis.SetDescription(itemCurrentlyLookedAt);
     }
 
     public void RotateObjectVert(float axisValue){
@@ -135,6 +152,7 @@ public class ItemInteractionScript : MonoBehaviour
         if(previousObj != null){
             ObjectInfo poi = previousObj.GetComponent<ObjectInfo>();
             previousObj.GetComponent<Outline>().enabled = false;
+            uis.SetDescription(null);
         }
         if(newObj != null){
             ObjectInfo noi = newObj.GetComponent<ObjectInfo>();
@@ -170,5 +188,6 @@ public class ItemInteractionScript : MonoBehaviour
 
     void DehighlightObjectLookedAt(){
         itemCurrentlyLookedAt.GetComponent<Outline>().enabled = false;
+        uis.SetDescription(null);
     }
 }

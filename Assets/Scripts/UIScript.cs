@@ -12,6 +12,8 @@ public class UIScript : MonoBehaviour
     public Text objectName;
     public Text objectDescription;
     public UILineRenderer objectNameLine;
+
+    bool showDescription = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +23,7 @@ public class UIScript : MonoBehaviour
     public void Init(){
         ii = GameObject.FindObjectOfType<ItemInteractionScript>();
         cc = GameObject.FindObjectOfType<CameraControlScript>();
+        objectDescription.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width/2f-5f, 30f);
     }
 
     // Update is called once per frame
@@ -52,9 +55,10 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void SetDescription(string description){
+    public void SetDescription(GameObject itemLookedAt){
+        string description = ii.GetItemDescription(itemLookedAt);
         objectDescription.text = description;
-        if(description == ""){
+        if(description == "" || description == null){
             objectDescription.gameObject.SetActive(false);
         }
         else{
