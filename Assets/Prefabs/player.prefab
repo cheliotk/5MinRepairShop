@@ -71,7 +71,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37eb8883464f79348955f1c52232f261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angleToRotateObject: 45
   hasItem: 0
+  itemCurrentlyHeld: {fileID: 0}
   itemCurrentlyLookedAt: {fileID: 0}
 --- !u!114 &5625379652387963650
 MonoBehaviour:

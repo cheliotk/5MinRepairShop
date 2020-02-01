@@ -26,12 +26,16 @@ public class ItemInteractionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        itemCurrentlyLookedAt = pi.GetObjectCurrentlyLookedAt();
-
-        string itemName = GetItemInfo(itemCurrentlyLookedAt);
-        if(itemName != null){
-            print(itemName);
+        GameObject newItemCurrentlyLooketAt = pi.GetObjectCurrentlyLookedAt();
+        if(itemCurrentlyLookedAt != newItemCurrentlyLooketAt){
+            SwitchItemFocus(itemCurrentlyLookedAt, newItemCurrentlyLooketAt);
         }
+        itemCurrentlyLookedAt = newItemCurrentlyLooketAt;
+
+        // string itemName = GetItemInfo(itemCurrentlyLookedAt);
+        // if(itemName != null){
+        //     print(itemName);
+        // }
 
         if(hasItem){
             itemCurrentlyHeld.GetComponent<Collider>().enabled = false;
@@ -71,5 +75,44 @@ public class ItemInteractionScript : MonoBehaviour
         else{
             return null;
         }
+    }
+
+    public void RotateObjectVert(float axisValue){
+        if(!hasItem)
+            return;
+
+        itemCurrentlyHeld.transform.Rotate(Vector3.right, Mathf.Sign(axisValue) * angleToRotateObject, Space.World);
+    }
+
+    public void RotateObjectHor(float axisValue){
+        if(!hasItem)
+            return;
+
+        itemCurrentlyHeld.transform.Rotate(Vector3.up, -1 * Mathf.Sign(axisValue) * angleToRotateObject, Space.World);
+
+    }
+
+    void SwitchItemFocus(GameObject previousObj, GameObject newObj){
+        if(previousObj != null){
+            ObjectInfo poi = previousObj.GetComponent<ObjectInfo>();
+            previousObj.GetComponent<Outline>().enabled = false;
+        }
+        if(newObj != null){
+            ObjectInfo noi = newObj.GetComponent<ObjectInfo>();
+            AddHighlightToObject(newObj);
+        }
+
+    }
+
+    void AddHighlightToObject(GameObject obj){
+        Outline outline = obj.GetComponent<Outline>();
+        if(outline == null){
+            outline = obj.AddComponent<Outline>();
+            outline.OutlineMode = Outline.Mode.OutlineAll;
+            outline.OutlineColor = Color.yellow;
+            outline.OutlineWidth = 5f;
+        }
+
+        outline.enabled = true;
     }
 }

@@ -5,16 +5,34 @@ using UnityEngine;
 public class PlayerInputScript : MonoBehaviour
 {
     CameraControlScript cc;
+    ItemInteractionScript ii;
     // Start is called before the first frame update
     void Start()
     {
         cc = GetComponent<CameraControlScript>();
+        ii = GetComponent<ItemInteractionScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonUp("Horizontal")){
+            ii.RotateObjectHor(Input.GetAxis("Horizontal"));
+        }
+        if(Input.GetButtonUp("Vertical")){
+            ii.RotateObjectVert(Input.GetAxis("Vertical"));
+        }
+        //     || Input.GetButtonUp("Vertical")){
+            
+        //     print(Input.GetAxis("Horizontal") + " | " + Input.GetAxis("Vertical"));
+        // }
+        // if(Input.GetKeyUp(KeyCode.W) 
+        //     || Input.GetKeyUp(KeyCode.W)
+        //     || Input.GetKeyUp(KeyCode.W)
+        //     || Input.GetKeyUp(KeyCode.W)){
+            
+            
+        // }
     }
 
     public Vector3 GetPositionLookedAt(){
