@@ -29,11 +29,26 @@ public class SceneManagerScript : MonoBehaviour
     void Start(){
         gm = GameObject.FindObjectOfType<GameManagerScript>();
         if(gm == null){
+            SelfInit();
+        }
+        else{
+            gm.SceneLoaded();
+        }
+    }
+
+    public void Init(){
+        gm = GameObject.FindObjectOfType<GameManagerScript>();
+        if(gm == null){
             GameObject bob = new GameObject();
             gm = bob.AddComponent<GameManagerScript>();
             gm.AcquiredCrosshair();
         }
         hasCrosshair = gm.HasCrosshair();
+        
+        SelfInit();
+    }
+
+    void SelfInit(){
         Cursor.visible = false;
         isPlayingIntro = true;
         cutsceneStartTime = Time.timeSinceLevelLoad;
@@ -53,7 +68,9 @@ public class SceneManagerScript : MonoBehaviour
             float cutsceneProgress = (Time.timeSinceLevelLoad - cutsceneStartTime) / introDuration;
             progressCircle.SetProgress(cutsceneProgress);
             if(cutsceneProgress > 1f){
-                //LOAD NEXT LEVEL
+                if(gm != null){
+                    gm.StartLoadNextScene();
+                }
             }
         }
     }

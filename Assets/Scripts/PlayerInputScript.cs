@@ -65,13 +65,13 @@ public class PlayerInputScript : MonoBehaviour
     public Vector3 GetPositionLookedAt(){
         RaycastHit hit;
         Ray ray = cc.GetRay();
-        if(Physics.Raycast(ray, out hit, 3f)){
+        if(Physics.Raycast(ray, out hit, 6f)){
             Debug.DrawLine(this.transform.position, hit.point, Color.green);
-            Vector3 pos = Vector3.Lerp(hit.point, this.transform.position, 0.1f);
+            Vector3 pos = Vector3.Lerp(hit.point, this.transform.position, 0.05f);
             return pos;
         }
         else{
-            Debug.DrawRay(this.transform.position, ray.direction * 3f, Color.green);
+            Debug.DrawRay(this.transform.position, ray.direction * 6f, Color.green);
             return this.transform.position + this.transform.forward * 0.8f;
         }
     }
