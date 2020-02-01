@@ -54,6 +54,9 @@ public class BrokenObjectScript : MonoBehaviour
 
     public bool CheckPartIsPlacedCorrectly(Part part){
         bool v = false;
+        if(part == null){
+            return false;
+        }
         int index = requiredParts.FindIndex(p => p == part);
 
         if(CheckPosition(part.transform.position, partsCorrectPosition[index])
