@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectInfo : MonoBehaviour
 {
     public string name;
-    public string description; 
+    public string description;
+    public bool isPickable = false;
 
 }
