@@ -16,19 +16,24 @@ public class ItemInteractionScript : MonoBehaviour
 
     public GameObject itemCurrentlyLookedAt;
 
-    bool hasInitialized = false;
+    bool isCutscenePlaying = true;
 
     public void Init(){
         pi = GetComponent<PlayerInputScript>();
         cc = GetComponent<CameraControlScript>();
 
-        hasInitialized = true;
+        isCutscenePlaying = false;
+    }
+
+    public void End(){
+        isCutscenePlaying = true;
+        DehighlightObjectLookedAt();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!hasInitialized){
+        if(isCutscenePlaying){
             return;
         }
         
@@ -157,5 +162,9 @@ public class ItemInteractionScript : MonoBehaviour
             itemCurrentlyLookedAt.GetComponent<Outline>().enabled = true;
             outline.enabled = false;
         }
+    }
+
+    void DehighlightObjectLookedAt(){
+        itemCurrentlyLookedAt.GetComponent<Outline>().enabled = false;
     }
 }

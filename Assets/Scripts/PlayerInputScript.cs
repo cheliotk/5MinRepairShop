@@ -7,18 +7,22 @@ public class PlayerInputScript : MonoBehaviour
     CameraControlScript cc;
     ItemInteractionScript ii;
 
-    bool hasInitialized = false;
+    bool isCutscenePlaying = true;
 
     public void Init(){
         cc = GetComponent<CameraControlScript>();
         ii = GetComponent<ItemInteractionScript>();
 
-        hasInitialized = true;
+        isCutscenePlaying = false;
+    }
+
+    public void End(){
+        isCutscenePlaying = true;
     }
     
     void Update()
     {
-        if(!hasInitialized){
+        if(isCutscenePlaying){
             return;
         }
 
