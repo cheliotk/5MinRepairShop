@@ -69,6 +69,7 @@ public class SceneManagerScript : MonoBehaviour
         GameObject.FindObjectOfType<ItemInteractionScript>().Init();
         GameObject.FindObjectOfType<SimpleMouseRotator>().Init();
         GameObject.FindObjectOfType<BrokenObjectScript>().Init();
+        GameObject.FindObjectOfType<UIScript>().Init();
 
         pzMan = GameObject.FindObjectOfType<PuzzleManagerScript>();
         pzMan.Init();

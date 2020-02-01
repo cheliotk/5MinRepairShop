@@ -19,4 +19,8 @@ public class CameraControlScript : MonoBehaviour
     public Ray GetRay(){
         return cam.ScreenPointToRay(new Vector3(Screen.width/2f, Screen.height/2f, 0f));
     }
+
+    public Vector3 GetScreenPoint(Vector3 worldPoint){
+        return cam.WorldToScreenPoint(worldPoint);
+    }
 }

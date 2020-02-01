@@ -73,7 +73,7 @@ public class ItemInteractionScript : MonoBehaviour
         // }
     }
 
-    string GetItemInfo(GameObject item){
+    public string GetItemInfo(GameObject item){
         if(item != null){
             ObjectInfo oi = item.GetComponent<ObjectInfo>();
             if(oi != null){
@@ -110,6 +110,10 @@ public class ItemInteractionScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void MouseClickRight(){
+
     }
 
     public void RotateObjectVert(float axisValue){

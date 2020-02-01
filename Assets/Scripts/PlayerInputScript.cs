@@ -6,18 +6,21 @@ public class PlayerInputScript : MonoBehaviour
 {
     CameraControlScript cc;
     ItemInteractionScript ii;
+    UIScript uis;
 
     bool isCutscenePlaying = true;
 
     public void Init(){
         cc = GetComponent<CameraControlScript>();
         ii = GetComponent<ItemInteractionScript>();
+        uis = GameObject.FindObjectOfType<UIScript>();
 
         isCutscenePlaying = false;
     }
 
     public void End(){
         isCutscenePlaying = true;
+        uis.SetName(null);
     }
     
     void Update()
@@ -44,6 +47,8 @@ public class PlayerInputScript : MonoBehaviour
            ii.HighlightPartOnObject(isPartOnObject);
         }
 
+        uis.SetName(itemCurrentlyLookedAt);
+
         //     || Input.GetButtonUp("Vertical")){
             
         //     print(Input.GetAxis("Horizontal") + " | " + Input.GetAxis("Vertical"));
@@ -51,6 +56,9 @@ public class PlayerInputScript : MonoBehaviour
 
         if(Input.GetMouseButtonUp(0)){
             ii.MouseCLicked(isPartOnObject);
+        }
+        if(Input.GetMouseButtonUp(1)){
+            ii.MouseClickRight();
         }
     }
 
