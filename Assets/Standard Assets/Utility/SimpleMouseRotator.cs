@@ -28,15 +28,30 @@ namespace UnityStandardAssets.Utility
         private Vector3 m_FollowVelocity;
         private Quaternion m_OriginalRotation;
 
+        bool isCutscenePlaying = true;
 
-        private void Start()
-        {
+
+        // private void Start()
+        // {
+        //     Init();
+        // }
+
+        public void Init(){
             m_OriginalRotation = transform.localRotation;
+            isCutscenePlaying = false;
+        }
+
+        public void End(){
+            isCutscenePlaying = true;
         }
 
 
         private void Update()
         {
+            if(isCutscenePlaying){
+                return;
+            }
+
             // we make initial calculations from the original local rotation
             transform.localRotation = m_OriginalRotation;
 

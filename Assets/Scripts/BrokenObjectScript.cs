@@ -11,9 +11,10 @@ public class BrokenObjectScript : MonoBehaviour
 
     public float distanceThresholdForCorrectPlacement = 0.1f;
     public float angleThresholdForCurrentPlacement = 5f;
-    
-    void Start()
-    {
+
+    bool isPuzzleSolved = false;
+
+    public void Init(){
         DisassembleObject();
     }
 
@@ -58,12 +59,27 @@ public class BrokenObjectScript : MonoBehaviour
         return v;
     }
 
+    bool CheckAllPartsPlaced(){
+        bool v = true;
+        foreach(Part p in requiredParts){
+            if (!CheckPartIsPlacedCorrectly(p)){
+                v = false;
+            }
+        }
+
+        return v;
+    }
+
     public void PlacePartOnObject(Part part){
         part.transform.parent = this.transform;
 
         int index = requiredParts.FindIndex(p => p == part);
         part.transform.localPosition = partsCorrectPosition[index];
         part.transform.localRotation = partsCorrectRotation[index];
+
+        if(CheckAllPartsPlaced()){
+            GameObject.FindObjectOfType<PuzzleManagerScript>().PuzzleSolved();
+        }
     }
 
     bool CheckPosition(Vector3 partPositionInGlobal, Vector3 correctPosition){

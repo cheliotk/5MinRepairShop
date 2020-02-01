@@ -6,16 +6,22 @@ public class PlayerInputScript : MonoBehaviour
 {
     CameraControlScript cc;
     ItemInteractionScript ii;
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    bool hasInitialized = false;
+
+    public void Init(){
         cc = GetComponent<CameraControlScript>();
         ii = GetComponent<ItemInteractionScript>();
-    }
 
-    // Update is called once per frame
+        hasInitialized = true;
+    }
+    
     void Update()
     {
+        if(!hasInitialized){
+            return;
+        }
+
         if(Input.GetButtonUp("Horizontal")){
             ii.RotateObjectHor(Input.GetAxis("Horizontal"));
         }
@@ -47,14 +53,14 @@ public class PlayerInputScript : MonoBehaviour
     public Vector3 GetPositionLookedAt(){
         RaycastHit hit;
         Ray ray = cc.GetRay();
-        if(Physics.Raycast(ray, out hit)){
+        if(Physics.Raycast(ray, out hit, 5f)){
             Debug.DrawLine(this.transform.position, hit.point, Color.green);
             Vector3 pos = Vector3.Lerp(hit.point, this.transform.position, 0.1f);
             return pos;
         }
         else{
-            Debug.DrawRay(this.transform.position, ray.direction * 1000f, Color.green);
-            return this.transform.position + this.transform.forward * 4f;
+            Debug.DrawRay(this.transform.position, ray.direction * 5f, Color.green);
+            return this.transform.position + this.transform.forward * 0.8f;
         }
     }
 

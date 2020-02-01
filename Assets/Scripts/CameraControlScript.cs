@@ -5,9 +5,8 @@ using UnityEngine;
 public class CameraControlScript : MonoBehaviour
 {
     Camera cam;
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    public void Init(){
         cam = GetComponentInChildren<Camera>();
     }
 

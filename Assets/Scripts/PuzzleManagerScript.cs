@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PuzzleManagerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public bool isPuzzleSetup = false;
+    public bool isPuzzleSolved = false;
+
+    SceneManagerScript sceneMan;
+    
+    public void Init(){
+        sceneMan = GameObject.FindObjectOfType<SceneManagerScript>();
+        isPuzzleSetup = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void PuzzleSolved(){
+        isPuzzleSolved = true;
+        sceneMan.PuzzleSolved();
     }
 }

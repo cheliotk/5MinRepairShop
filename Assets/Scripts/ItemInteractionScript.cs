@@ -16,16 +16,22 @@ public class ItemInteractionScript : MonoBehaviour
 
     public GameObject itemCurrentlyLookedAt;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    bool hasInitialized = false;
+
+    public void Init(){
         pi = GetComponent<PlayerInputScript>();
         cc = GetComponent<CameraControlScript>();
+
+        hasInitialized = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!hasInitialized){
+            return;
+        }
+        
         GameObject newItemCurrentlyLooketAt = pi.GetObjectCurrentlyLookedAt();
         if(itemCurrentlyLookedAt != newItemCurrentlyLooketAt){
             SwitchItemFocus(itemCurrentlyLookedAt, newItemCurrentlyLooketAt);

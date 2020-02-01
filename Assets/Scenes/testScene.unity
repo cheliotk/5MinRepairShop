@@ -13464,7 +13464,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-41936
+  m_Name: pb_Mesh13664
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -14819,13 +14819,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033617606}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1634233165}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!23 &1033617608
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15058,13 +15058,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135071972}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1634233165}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!23 &1135071974
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15274,7 +15274,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-35890
+  m_Name: pb_Mesh13780
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -16525,6 +16525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c1a5db0daf213489c37f0802c40020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPuzzleSetup: 0
+  isPuzzleSolved: 0
 --- !u!114 &1827325699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16537,6 +16539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321b5f4f01d7f09498cbcffeb9e11f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayingIntro: 0
+  isPlayingOutro: 0
+  introDuration: 1
+  outroDuration: 3
 --- !u!4 &1827325700
 Transform:
   m_ObjectHideFlags: 0
@@ -17177,7 +17183,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-31022
+  m_Name: pb_Mesh13708
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
