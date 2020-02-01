@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
+    bool hasCrosshair = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,13 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public bool HasCrosshair(){
+        return hasCrosshair;
+    }
+
+    public void AcquiredCrosshair(){
+        hasCrosshair = true;
     }
 }

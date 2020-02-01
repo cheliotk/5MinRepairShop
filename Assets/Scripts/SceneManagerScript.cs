@@ -15,7 +15,9 @@ public class SceneManagerScript : MonoBehaviour
     public float outroDuration = 3f;
 
     PuzzleManagerScript pzMan;
+    GameManagerScript gm;
 
+    [Header("UI STUFF")]
     Canvas canvas;
     public GameObject cutsceneOverlay;
     public UICircle progressCircle;
@@ -25,6 +27,13 @@ public class SceneManagerScript : MonoBehaviour
     float cutsceneStartTime = -1f;
 
     void Start(){
+        gm = GameObject.FindObjectOfType<GameManagerScript>();
+        if(gm == null){
+            GameObject bob = new GameObject();
+            gm = bob.AddComponent<GameManagerScript>();
+            gm.AcquiredCrosshair();
+        }
+        hasCrosshair = gm.HasCrosshair();
         Cursor.visible = false;
         isPlayingIntro = true;
         cutsceneStartTime = Time.timeSinceLevelLoad;
