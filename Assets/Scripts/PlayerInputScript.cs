@@ -10,6 +10,11 @@ public class PlayerInputScript : MonoBehaviour
 
     bool isCutscenePlaying = true;
 
+    public LayerMask notPartsLm;
+
+    [Range(0f,1f)]
+    float objDistFromCamera = 0.5f;
+
     public void Init(){
         cc = GetComponent<CameraControlScript>();
         ii = GetComponent<ItemInteractionScript>();
@@ -35,6 +40,12 @@ public class PlayerInputScript : MonoBehaviour
         if(Input.GetButtonUp("Vertical")){
             ii.RotateObjectVert(Input.GetAxis("Vertical"));
         }
+
+        objDistFromCamera += Input.mouseScrollDelta.y * 0.01f;
+        if(objDistFromCamera < 0.1f)
+            objDistFromCamera = 0.1f;
+        if(objDistFromCamera > 1f)
+            objDistFromCamera = 1f;
 
         GameObject itemCurrentlyLookedAt = ii.itemCurrentlyLookedAt;
         bool isPartOnObject = false;
@@ -65,14 +76,14 @@ public class PlayerInputScript : MonoBehaviour
     public Vector3 GetPositionLookedAt(){
         RaycastHit hit;
         Ray ray = cc.GetRay();
-        if(Physics.Raycast(ray, out hit, 6f)){
+        if(Physics.Raycast(ray, out hit, 6f, notPartsLm)){
             Debug.DrawLine(this.transform.position, hit.point, Color.green);
-            Vector3 pos = Vector3.Lerp(hit.point, this.transform.position, 0.05f);
+            Vector3 pos = Vector3.Lerp(this.transform.position, hit.point, objDistFromCamera);
             return pos;
         }
         else{
             Debug.DrawRay(this.transform.position, ray.direction * 6f, Color.green);
-            return this.transform.position + this.transform.forward * 0.8f;
+            return this.transform.position + this.transform.forward * objDistFromCamera * 6f;
         }
     }
 

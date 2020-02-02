@@ -57,6 +57,33 @@ public class SceneManagerScript : MonoBehaviour
         Invoke("SetupPlayMode", introDuration);
     }
 
+    void SetupPlayMode(){
+        if(hasCrosshair){
+            crosshairUI.SetActive(true);
+        }
+        isPlayingIntro = false;
+        cutsceneOverlay.SetActive(false);
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player){
+            player.GetComponent<PlayerInputScript>().Init();
+            player.GetComponent<CameraControlScript>().Init();
+            player.GetComponent<ItemInteractionScript>().Init();
+            player.GetComponent<SimpleMouseRotator>().Init();
+
+        }
+        
+        BrokenObjectScript bos = GameObject.FindObjectOfType<BrokenObjectScript>();
+        if(bos){
+            bos.Init();
+        }
+
+        GameObject.FindObjectOfType<UIScript>().Init();
+
+        pzMan = GameObject.FindObjectOfType<PuzzleManagerScript>();
+        pzMan.Init();
+
+    }
+
     void Update(){
         if (isPlayingIntro){
             // cutsceneOverlay.SetActive(true);
@@ -73,24 +100,6 @@ public class SceneManagerScript : MonoBehaviour
                 }
             }
         }
-    }
-
-    void SetupPlayMode(){
-        if(hasCrosshair){
-            crosshairUI.SetActive(true);
-        }
-        isPlayingIntro = false;
-        cutsceneOverlay.SetActive(false);
-        GameObject.FindObjectOfType<PlayerInputScript>().Init();
-        GameObject.FindObjectOfType<CameraControlScript>().Init();
-        GameObject.FindObjectOfType<ItemInteractionScript>().Init();
-        GameObject.FindObjectOfType<SimpleMouseRotator>().Init();
-        GameObject.FindObjectOfType<BrokenObjectScript>().Init();
-        GameObject.FindObjectOfType<UIScript>().Init();
-
-        pzMan = GameObject.FindObjectOfType<PuzzleManagerScript>();
-        pzMan.Init();
-
     }
 
     public void PuzzleSolved(){

@@ -109,9 +109,13 @@ public class ItemInteractionScript : MonoBehaviour
         if(hasItem){
             if(isPartOnObject){
                 HighlightPartOnObject(false);
-                itemCurrentlyLookedAt.GetComponent<BrokenObjectScript>().PlacePartOnObject(itemCurrentlyHeld.GetComponent<Part>());
+                bool v = itemCurrentlyLookedAt.GetComponent<BrokenObjectScript>().PlacePartOnObject(itemCurrentlyHeld.GetComponent<Part>());
+                if (v){
+                    itemCurrentlyHeld.GetComponent<Collider>().enabled = true;
+                }
             }
             else{
+                itemCurrentlyHeld.transform.parent = null;
                 itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
                 itemCurrentlyHeld.GetComponent<Collider>().enabled = true;
             }
@@ -182,6 +186,7 @@ public class ItemInteractionScript : MonoBehaviour
         }
         else{
             itemCurrentlyLookedAt.GetComponent<Outline>().enabled = true;
+            outline.OutlineColor = Color.yellow;
             outline.enabled = false;
         }
     }

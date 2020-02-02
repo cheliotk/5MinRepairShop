@@ -28,16 +28,16 @@ namespace UnityStandardAssets.Utility
         private Vector3 m_FollowVelocity;
         private Quaternion m_OriginalRotation;
 
-        bool isCutscenePlaying = true;
+        public bool isCutscenePlaying = true;
 
 
-        // private void Start()
-        // {
-        //     Init();
-        // }
+        private void Start()
+        {
+            m_OriginalRotation = transform.localRotation;
+        }
 
         public void Init(){
-            m_OriginalRotation = transform.localRotation;
+            
             isCutscenePlaying = false;
         }
 
@@ -49,7 +49,14 @@ namespace UnityStandardAssets.Utility
         private void Update()
         {
             if(isCutscenePlaying){
-                return;
+                rotationRange = new Vector2(70f,70f);
+                rotationSpeed = 2f;
+                dampingTime = 0.2f;
+            }
+            else{
+                rotationRange = new Vector2(150f,180f);
+                rotationSpeed = 10f;
+                dampingTime = 0.05f;
             }
 
             // we make initial calculations from the original local rotation

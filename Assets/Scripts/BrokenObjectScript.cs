@@ -46,9 +46,11 @@ public class BrokenObjectScript : MonoBehaviour
         for (int i = 0; i < requiredParts.Count; i++)
         {
             Part p = requiredParts[i];
-            p.transform.parent = null;
+            if(!keepPartOnObject[i]){
+                p.transform.parent = null;
+            }
             p.transform.position = locationsOnShelf[i].transform.position;
-            p.transform.rotation = locationsOnShelf[i].transform.rotation;
+            // p.transform.rotation = locationsOnShelf[i].transform.rotation;
         }
     }
 
@@ -79,16 +81,23 @@ public class BrokenObjectScript : MonoBehaviour
         return v;
     }
 
-    public void PlacePartOnObject(Part part){
+    public bool PlacePartOnObject(Part part){
+        bool val = false;
         part.transform.parent = this.transform;
 
         int index = requiredParts.FindIndex(p => p == part);
         part.transform.localPosition = partsCorrectPosition[index];
         part.transform.localRotation = partsCorrectRotation[index];
+        if(keepPartOnObject[index]){
+            val = true;
+        }
 
         if(CheckAllPartsPlaced()){
             GameObject.FindObjectOfType<PuzzleManagerScript>().PuzzleSolved();
+            val = false;
         }
+
+        return val;
     }
 
     bool CheckPosition(Vector3 partPositionInGlobal, Vector3 correctPosition){
