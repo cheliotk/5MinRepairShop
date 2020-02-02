@@ -27,6 +27,9 @@ public class SceneManagerScript : MonoBehaviour
     float cutsceneStartTime = -1f;
 
     public GameObject brokenItem;
+    public GameObject itemFixedForOutro;
+    Vector3 brokenItemStartPos;
+    Quaternion brokenItemStartRot;
 
     public Animator animator;
     public Animator animatorOutro;
@@ -82,9 +85,15 @@ public class SceneManagerScript : MonoBehaviour
         }
 
         brokenItem.SetActive(false);
+        itemFixedForOutro.SetActive(true);
+
+        itemFixedForOutro.transform.position = brokenItemStartPos;
+        itemFixedForOutro.transform.rotation = brokenItemStartRot;
+
         float v = 0f;
-        while (v < 1f){
+        while (v < outroDuration){
             v += Time.deltaTime;
+            yield return null;
         }
 
         theNextDayCard.SetActive(true);
@@ -122,6 +131,8 @@ public class SceneManagerScript : MonoBehaviour
         }
 
         brokenItem.SetActive(true);
+        brokenItemStartPos = brokenItem.transform.position;
+        brokenItemStartRot = brokenItem.transform.rotation;
         
         BrokenObjectScript bos = GameObject.FindObjectOfType<BrokenObjectScript>();
         
