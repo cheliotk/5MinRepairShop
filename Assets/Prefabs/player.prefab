@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5fb0961ba91ea4098340a3aebc081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notPartsLm:
+    serializedVersion: 2
+    m_Bits: 311
 --- !u!114 &5625379652387963655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,11 +91,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationRange: {x: 150, y: 180}
-  rotationSpeed: 10
+  rotationSpeed: 5
   dampingTime: 0.05
   autoZeroVerticalOnMobile: 1
   autoZeroHorizontalOnMobile: 0
   relative: 1
+  isCutscenePlaying: 1
 --- !u!1 &5625379652491054612
 GameObject:
   m_ObjectHideFlags: 0
