@@ -26,6 +26,15 @@ public class SceneManagerScript : MonoBehaviour
     public bool hasCrosshair = true;
     float cutsceneStartTime = -1f;
 
+    public GameObject brokenItem;
+
+    public Animator animator;
+    public Animator animatorOutro;
+
+    public List<GameObject> characters;
+
+    public GameObject theNextDayCard;
+
     void Start(){
         gm = GameObject.FindObjectOfType<GameManagerScript>();
         if(gm == null){
@@ -54,10 +63,50 @@ public class SceneManagerScript : MonoBehaviour
         cutsceneStartTime = Time.timeSinceLevelLoad;
         cutsceneText.text = "INTRO CUTSCENE IN PROGRESS";
         
-        Invoke("SetupPlayMode", introDuration);
+        // Invoke("SetupPlayMode", introDuration);
+
+        StartCoroutine(CheckIntroIsDone());
+    }
+
+    IEnumerator CheckIntroIsDone(){
+        while((Time.timeSinceLevelLoad - cutsceneStartTime) <= animator.GetCurrentAnimatorStateInfo(0).length){
+            yield return null;
+        }
+
+        SetupPlayMode();
+    }
+
+    IEnumerator CheckOutroIsDone(){
+        while((Time.timeSinceLevelLoad - cutsceneStartTime) <= animatorOutro.GetCurrentAnimatorStateInfo(0).length){
+            yield return null;
+        }
+
+        brokenItem.SetActive(false);
+        float v = 0f;
+        while (v < 1f){
+            v += Time.deltaTime;
+        }
+
+        theNextDayCard.SetActive(true);
+
+        print("DONE");
+        Invoke("LoadNextLevel",2f);
+    }
+
+    void DisableCharacters(){
+        foreach(GameObject c in characters){
+            c.SetActive(false);
+        }
+    }
+
+    void EnableCharacters(){
+        foreach(GameObject c in characters){
+            c.SetActive(true);
+        }
     }
 
     void SetupPlayMode(){
+        
         if(hasCrosshair){
             crosshairUI.SetActive(true);
         }
@@ -71,8 +120,11 @@ public class SceneManagerScript : MonoBehaviour
             player.GetComponent<SimpleMouseRotator>().Init();
 
         }
+
+        brokenItem.SetActive(true);
         
         BrokenObjectScript bos = GameObject.FindObjectOfType<BrokenObjectScript>();
+        
         if(bos){
             bos.Init();
         }
@@ -82,9 +134,14 @@ public class SceneManagerScript : MonoBehaviour
         pzMan = GameObject.FindObjectOfType<PuzzleManagerScript>();
         pzMan.Init();
 
+        Invoke("DisableCharacters", 2f);
+
     }
 
     void Update(){
+        if(Input.GetKeyUp(KeyCode.Escape)){
+            gm.StartLoadNextScene(0);
+        }
         if (isPlayingIntro){
             // cutsceneOverlay.SetActive(true);
             float cutsceneProgress = (Time.timeSinceLevelLoad - cutsceneStartTime) / introDuration;
@@ -92,23 +149,25 @@ public class SceneManagerScript : MonoBehaviour
         }
         else if(isPlayingOutro){
             // cutsceneOverlay.SetActive(true);
-            float cutsceneProgress = (Time.timeSinceLevelLoad - cutsceneStartTime) / introDuration;
+            float cutsceneProgress = (Time.timeSinceLevelLoad - cutsceneStartTime) / outroDuration;
             progressCircle.SetProgress(cutsceneProgress);
-            if(cutsceneProgress > 1f){
-                if(gm != null){
-                    gm.StartLoadNextScene();
-                }
-            }
+            // if(cutsceneProgress > 1f){
+            //     if(gm != null){
+            //         gm.StartLoadNextScene();
+            //     }
+            // }
         }
     }
 
     public void PuzzleSolved(){
-        
+        PlayOutro();
 
-        Invoke("PlayOutro", 1f);
+        // Invoke("PlayOutro", 1f);
     }
 
     void PlayOutro(){
+        EnableCharacters();
+
         cutsceneOverlay.SetActive(true);
         isPlayingOutro = true;
         cutsceneStartTime = Time.timeSinceLevelLoad;
@@ -116,5 +175,11 @@ public class SceneManagerScript : MonoBehaviour
         GameObject.FindObjectOfType<SimpleMouseRotator>().End();
         GameObject.FindObjectOfType<PlayerInputScript>().End();
         GameObject.FindObjectOfType<ItemInteractionScript>().End();
+
+        StartCoroutine(CheckOutroIsDone());
+    }
+
+    void LoadNextLevel(){
+        gm.StartLoadNextScene();
     }
 }
