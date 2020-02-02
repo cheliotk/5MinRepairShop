@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
-    bool hasCrosshair = false;
+    public bool hasCrosshair = false;
     public int currentSceneIndex = 0;
     
     public int numberOfLevelScenes = 2;
@@ -57,6 +57,10 @@ public class GameManagerScript : MonoBehaviour
             SceneManager.LoadSceneAsync(currentSceneIndex+1, LoadSceneMode.Single);
 
         }
+    }
+
+    public void StartLoadNextScene(int sceneIndex){
+        SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Single);
     }
 
     public void ExitGame(){
