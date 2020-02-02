@@ -14918,6 +14918,11 @@ PrefabInstance:
       propertyPath: characters.Array.data[2]
       value: 
       objectReference: {fileID: 958812551}
+    - target: {fileID: 4209544365720646550, guid: 8628f6f1100300e41b4e054e24a2168c,
+        type: 3}
+      propertyPath: itemFixedForOutro
+      value: 
+      objectReference: {fileID: 1417960206}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8628f6f1100300e41b4e054e24a2168c, type: 3}
 --- !u!1001 &5625379651266092094
