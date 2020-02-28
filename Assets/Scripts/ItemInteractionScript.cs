@@ -52,9 +52,13 @@ public class ItemInteractionScript : MonoBehaviour
             // itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
             Part p = itemCurrentlyHeld.GetComponent<Part>();
             if(p != null 
-                && pi.GetObjectCurrentlyLookedAt(false) == bos.GetPlaceholderObjForPart(p)
-                && bos.CheckPartIsPlacedCorrectly(p)){
-                itemCurrentlyHeld.transform.position = bos.GetCorrectPositionOfPart(p);
+                && pi.GetObjectCurrentlyLookedAt(false) == bos.GetPlaceholderObjForPart(p)){
+                // && bos.CheckPartIsPlacedCorrectly(p)){
+                    Vector3 tempPos = itemCurrentlyHeld.transform.position;
+                    itemCurrentlyHeld.transform.position = bos.GetCorrectPositionOfPart(p);
+                    if(!bos.CheckPartIsPlacedCorrectly(p)){
+                        itemCurrentlyHeld.transform.position = tempPos;
+                    }
             }
             else{
                 itemCurrentlyHeld.transform.position = pi.GetValidPositionLookedAtForObjectHeld(itemCurrentlyHeld);
@@ -168,12 +172,16 @@ public class ItemInteractionScript : MonoBehaviour
     public void HighlightPartOnObject(bool highlight){
         Outline outline = itemCurrentlyHeld.GetComponent<Outline>();
         if(highlight){
-            itemCurrentlyLookedAt.GetComponent<Outline>().enabled = false;
+            if(itemCurrentlyLookedAt){
+                itemCurrentlyLookedAt.GetComponent<Outline>().enabled = false;
+            }
             outline.enabled = true;
             outline.OutlineColor = Color.green;
         }
         else{
-            itemCurrentlyLookedAt.GetComponent<Outline>().enabled = true;
+            if(itemCurrentlyLookedAt){
+                itemCurrentlyLookedAt.GetComponent<Outline>().enabled = true;
+            }
             outline.OutlineColor = Color.yellow;
             outline.enabled = false;
         }

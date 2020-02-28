@@ -62,6 +62,8 @@ public class PlayerInputScript : MonoBehaviour
             && GetObjectCurrentlyLookedAt(false).GetComponent<ObjectInfo>().isPartPlaceholder){
             isPartOnObject = bos.CheckPartIsPlacedCorrectly(ii.itemCurrentlyHeld.GetComponent<Part>());
             // print(isPartOnObject);
+        }
+        if(ii.hasItem){
            ii.HighlightPartOnObject(isPartOnObject);
         }
 
