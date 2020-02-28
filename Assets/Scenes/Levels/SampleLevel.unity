@@ -551,6 +551,7 @@ MonoBehaviour:
     Object will still not function without it anyway.
   isPickable: 1
   isBrokenObject: 0
+  isPartPlaceholder: 0
 --- !u!65 &363959425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -879,15 +880,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2952385846718875, guid: 51be879056458f04faab7e108ae6fc2c, type: 3}
-      propertyPath: m_Radius
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413333572895882137, guid: 51be879056458f04faab7e108ae6fc2c,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.04
-      objectReference: {fileID: 0}
     - target: {fileID: 3186616624278951558, guid: 51be879056458f04faab7e108ae6fc2c,
         type: 3}
       propertyPath: m_Name
@@ -896,7 +888,16 @@ PrefabInstance:
     - target: {fileID: 3186616624278951558, guid: 51be879056458f04faab7e108ae6fc2c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2952385846718875, guid: 51be879056458f04faab7e108ae6fc2c, type: 3}
+      propertyPath: m_Radius
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1413333572895882137, guid: 51be879056458f04faab7e108ae6fc2c,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3186616624279440038, guid: 51be879056458f04faab7e108ae6fc2c,
         type: 3}
@@ -1433,6 +1434,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6709004150693726306, guid: 649fed0e628fedd4faf38fdc59adb7a2,
+        type: 3}
+      propertyPath: m_Name
+      value: BubblyBilly
+      objectReference: {fileID: 0}
     - target: {fileID: 6709004150693726304, guid: 649fed0e628fedd4faf38fdc59adb7a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1487,11 +1493,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6709004150693726306, guid: 649fed0e628fedd4faf38fdc59adb7a2,
-        type: 3}
-      propertyPath: m_Name
-      value: BubblyBilly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649fed0e628fedd4faf38fdc59adb7a2, type: 3}
@@ -1928,6 +1929,7 @@ MonoBehaviour:
   - {fileID: 1135071972}
   - {fileID: 1033617606}
   keepPartOnObject: 0000
+  correctPartTransforms: []
   distanceThresholdForCorrectPlacement: 0.1
   angleThresholdForCurrentPlacement: 5
 --- !u!114 &1727052511
@@ -1951,6 +1953,7 @@ MonoBehaviour:
     the bleedin' choir invisible!! THIS IS AN EX-OBJECT!!
   isPickable: 1
   isBrokenObject: 1
+  isPartPlaceholder: 0
 --- !u!64 &1727052512
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14229,6 +14232,7 @@ MonoBehaviour:
   description: 
   isPickable: 1
   isBrokenObject: 0
+  isPartPlaceholder: 0
 --- !u!1001 &1873381350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14236,6 +14240,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7829617971196499599, guid: c83f3b4949ac8ae4994978ed20b7598e,
+        type: 3}
+      propertyPath: m_Name
+      value: BubblyBilly02
+      objectReference: {fileID: 0}
     - target: {fileID: 7829617971196499585, guid: c83f3b4949ac8ae4994978ed20b7598e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14290,11 +14299,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7829617971196499599, guid: c83f3b4949ac8ae4994978ed20b7598e,
-        type: 3}
-      propertyPath: m_Name
-      value: BubblyBilly02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83f3b4949ac8ae4994978ed20b7598e, type: 3}
@@ -14377,6 +14381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1899756500}
   - component: {fileID: 1899756499}
+  - component: {fileID: 1899756501}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -14436,6 +14441,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50.000004, y: 32.834003, z: 0}
+--- !u!136 &1899756501
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899756498}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2005831446 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5365452480052124025, guid: b31247b83d93eeb47aed6dabd89381ea,
@@ -14732,6 +14751,7 @@ MonoBehaviour:
     in order to fixify the whatamajigs.
   isPickable: 1
   isBrokenObject: 0
+  isPartPlaceholder: 0
 --- !u!65 &2039017842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15125,6 +15145,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4209544365720646548, guid: 8628f6f1100300e41b4e054e24a2168c,
+        type: 3}
+      propertyPath: m_Name
+      value: sceneManager
+      objectReference: {fileID: 0}
     - target: {fileID: 4209544365720646545, guid: 8628f6f1100300e41b4e054e24a2168c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15180,11 +15205,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4209544365720646548, guid: 8628f6f1100300e41b4e054e24a2168c,
-        type: 3}
-      propertyPath: m_Name
-      value: sceneManager
-      objectReference: {fileID: 0}
     - target: {fileID: 4209544365720646550, guid: 8628f6f1100300e41b4e054e24a2168c,
         type: 3}
       propertyPath: characters.Array.data[0]
@@ -15234,16 +15254,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5365452479709193576, guid: b31247b83d93eeb47aed6dabd89381ea,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365452479822522842, guid: b31247b83d93eeb47aed6dabd89381ea,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: ad9e4fa674520ab409cdaa98fa523166, type: 2}
     - target: {fileID: 5365452480052124025, guid: b31247b83d93eeb47aed6dabd89381ea,
         type: 3}
       propertyPath: m_Name
@@ -15254,6 +15264,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5365452479709193576, guid: b31247b83d93eeb47aed6dabd89381ea,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365452479822522842, guid: b31247b83d93eeb47aed6dabd89381ea,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ad9e4fa674520ab409cdaa98fa523166, type: 2}
     - target: {fileID: 5365452480052124026, guid: b31247b83d93eeb47aed6dabd89381ea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15318,10 +15338,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5625379652387963652, guid: c70ec69531f2a69408eab89cc85ead0c,
+    - target: {fileID: 5625379652387963657, guid: c70ec69531f2a69408eab89cc85ead0c,
         type: 3}
-      propertyPath: notPartsLm.m_Bits
-      value: 311
+      propertyPath: m_Name
+      value: player
       objectReference: {fileID: 0}
     - target: {fileID: 5625379652387963653, guid: c70ec69531f2a69408eab89cc85ead0c,
         type: 3}
@@ -15378,10 +15398,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5625379652387963657, guid: c70ec69531f2a69408eab89cc85ead0c,
+    - target: {fileID: 5625379652387963652, guid: c70ec69531f2a69408eab89cc85ead0c,
         type: 3}
-      propertyPath: m_Name
-      value: player
+      propertyPath: notPartsLm.m_Bits
+      value: 307
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625379652387963652, guid: c70ec69531f2a69408eab89cc85ead0c,
+        type: 3}
+      propertyPath: notPlaceholdersLm.m_Bits
+      value: 819
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c70ec69531f2a69408eab89cc85ead0c, type: 3}

@@ -6,6 +6,7 @@ public class ItemInteractionScript : MonoBehaviour
 {
     PlayerInputScript pi;
     CameraControlScript cc;
+    BrokenObjectScript bos;
     UIScript uis;
 
     [Header("Item Manipulation Properties")]
@@ -23,6 +24,7 @@ public class ItemInteractionScript : MonoBehaviour
         pi = GetComponent<PlayerInputScript>();
         cc = GetComponent<CameraControlScript>();
         uis = GameObject.FindObjectOfType<UIScript>();
+        bos = GameObject.FindObjectOfType<BrokenObjectScript>();
 
         isCutscenePlaying = false;
     }
@@ -39,40 +41,25 @@ public class ItemInteractionScript : MonoBehaviour
             return;
         }
         
-        GameObject newItemCurrentlyLooketAt = pi.GetObjectCurrentlyLookedAt();
+        GameObject newItemCurrentlyLooketAt = pi.GetObjectCurrentlyLookedAt(true);
         if(itemCurrentlyLookedAt != newItemCurrentlyLooketAt){
             SwitchItemFocus(itemCurrentlyLookedAt, newItemCurrentlyLooketAt);
         }
         itemCurrentlyLookedAt = newItemCurrentlyLooketAt;
 
-        // string itemName = GetItemInfo(itemCurrentlyLookedAt);
-        // if(itemName != null){
-        //     print(itemName);
-        // }
-
         if(hasItem){
             itemCurrentlyHeld.GetComponent<Collider>().enabled = false;
-            itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
-
-            // if(Input.GetMouseButtonUp(0)){
-            //     itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
-            //     itemCurrentlyHeld.GetComponent<Collider>().enabled = true;
-
-            //     itemCurrentlyHeld = null;
-            //     hasItem = false;
-            // }
+            // itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
+            Part p = itemCurrentlyHeld.GetComponent<Part>();
+            if(p != null 
+                && pi.GetObjectCurrentlyLookedAt(false) == bos.GetPlaceholderObjForPart(p)
+                && bos.CheckPartIsPlacedCorrectly(p)){
+                itemCurrentlyHeld.transform.position = bos.GetCorrectPositionOfPart(p);
+            }
+            else{
+                itemCurrentlyHeld.transform.position = pi.GetValidPositionLookedAtForObjectHeld(itemCurrentlyHeld);
+            }
         }
-        // else{
-        //     if(Input.GetMouseButtonUp(0)){
-        //         if(itemCurrentlyLookedAt != null){
-        //             ObjectInfo oi = itemCurrentlyLookedAt.GetComponent<ObjectInfo>();
-        //             if(oi != null && oi.isPickable){
-        //                 hasItem = true;
-        //                 itemCurrentlyHeld = itemCurrentlyLookedAt;
-        //             }
-        //         }
-        //     }
-        // }
     }
 
     public string GetItemInfo(GameObject item){
@@ -109,14 +96,15 @@ public class ItemInteractionScript : MonoBehaviour
         if(hasItem){
             if(isPartOnObject){
                 HighlightPartOnObject(false);
-                bool v = itemCurrentlyLookedAt.GetComponent<BrokenObjectScript>().PlacePartOnObject(itemCurrentlyHeld.GetComponent<Part>());
+                bool v = GameObject.FindObjectOfType<BrokenObjectScript>().PlacePartOnObject(itemCurrentlyHeld.GetComponent<Part>());
                 if (v){
                     itemCurrentlyHeld.GetComponent<Collider>().enabled = true;
                 }
             }
             else{
                 itemCurrentlyHeld.transform.parent = null;
-                itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
+                // itemCurrentlyHeld.transform.position = pi.GetPositionLookedAt();
+                itemCurrentlyHeld.transform.position = pi.GetValidPositionLookedAtForObjectHeld(itemCurrentlyHeld);
                 itemCurrentlyHeld.GetComponent<Collider>().enabled = true;
             }
             itemCurrentlyHeld = null;

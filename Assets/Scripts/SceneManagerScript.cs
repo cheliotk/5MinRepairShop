@@ -121,15 +121,7 @@ public class SceneManagerScript : MonoBehaviour
         }
         isPlayingIntro = false;
         cutsceneOverlay.SetActive(false);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if(player){
-            player.GetComponent<PlayerInputScript>().Init();
-            player.GetComponent<CameraControlScript>().Init();
-            player.GetComponent<ItemInteractionScript>().Init();
-            player.GetComponent<SimpleMouseRotator>().Init();
-
-        }
-
+        
         brokenItem.SetActive(true);
         brokenItemStartPos = brokenItem.transform.position;
         brokenItemStartRot = brokenItem.transform.rotation;
@@ -139,6 +131,17 @@ public class SceneManagerScript : MonoBehaviour
         if(bos){
             bos.Init();
         }
+        
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player){
+            print("INITING");
+            player.GetComponent<PlayerInputScript>().Init();
+            player.GetComponent<CameraControlScript>().Init();
+            player.GetComponent<ItemInteractionScript>().Init();
+            player.GetComponent<SimpleMouseRotator>().Init();
+
+        }
+
 
         GameObject.FindObjectOfType<UIScript>().Init();
 

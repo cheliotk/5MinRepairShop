@@ -119,6 +119,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6709004150693726306, guid: 649fed0e628fedd4faf38fdc59adb7a2,
+        type: 3}
+      propertyPath: m_Name
+      value: BubblyBilly
+      objectReference: {fileID: 0}
     - target: {fileID: 6709004150693726304, guid: 649fed0e628fedd4faf38fdc59adb7a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -173,11 +178,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6709004150693726306, guid: 649fed0e628fedd4faf38fdc59adb7a2,
-        type: 3}
-      propertyPath: m_Name
-      value: BubblyBilly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 649fed0e628fedd4faf38fdc59adb7a2, type: 3}
@@ -612,6 +612,7 @@ MonoBehaviour:
     Object will still not function without it anyway.
   isPickable: 1
   isBrokenObject: 0
+  isPartPlaceholder: 0
 --- !u!65 &363959425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1074,6 +1075,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7829617971196499599, guid: c83f3b4949ac8ae4994978ed20b7598e,
+        type: 3}
+      propertyPath: m_Name
+      value: BubblyBilly02
+      objectReference: {fileID: 0}
     - target: {fileID: 7829617971196499585, guid: c83f3b4949ac8ae4994978ed20b7598e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1128,11 +1134,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7829617971196499599, guid: c83f3b4949ac8ae4994978ed20b7598e,
-        type: 3}
-      propertyPath: m_Name
-      value: BubblyBilly02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83f3b4949ac8ae4994978ed20b7598e, type: 3}
@@ -1284,6 +1285,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1085511639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085511640}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085511640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085511639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.4659915, y: 1.4875305, z: -8.510951}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1135071972
 GameObject:
@@ -1633,6 +1664,7 @@ MonoBehaviour:
   - {fileID: 1135071972}
   - {fileID: 1033617606}
   keepPartOnObject: 0000
+  correctPartTransforms: []
   distanceThresholdForCorrectPlacement: 0.15
   angleThresholdForCurrentPlacement: 5
 --- !u!114 &1727052511
@@ -1656,6 +1688,7 @@ MonoBehaviour:
     the bleedin' choir invisible!! THIS IS AN EX-OBJECT!!
   isPickable: 1
   isBrokenObject: 1
+  isPartPlaceholder: 0
 --- !u!64 &1727052512
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14008,6 +14041,7 @@ MonoBehaviour:
   description: 
   isPickable: 1
   isBrokenObject: 0
+  isPartPlaceholder: 0
 --- !u!1 &1899756498
 GameObject:
   m_ObjectHideFlags: 0
@@ -14084,6 +14118,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8951371687498390320, guid: d80fbe07d44783b44b761a379e78f89b,
+        type: 3}
+      propertyPath: m_Name
+      value: blueScreenGenerator
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951371687498390320, guid: d80fbe07d44783b44b761a379e78f89b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2259987749823046054, guid: d80fbe07d44783b44b761a379e78f89b,
         type: 3}
       propertyPath: locationsOnShelf.Array.data[1]
@@ -14149,14 +14193,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
       objectReference: {fileID: 0}
-    - target: {fileID: 8951371687498390320, guid: d80fbe07d44783b44b761a379e78f89b,
-        type: 3}
-      propertyPath: m_Name
-      value: blueScreenGenerator
+    - target: {fileID: 1525222987, guid: d80fbe07d44783b44b761a379e78f89b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8951371687498390320, guid: d80fbe07d44783b44b761a379e78f89b,
-        type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 1525222987, guid: d80fbe07d44783b44b761a379e78f89b, type: 3}
+      propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -14451,6 +14493,7 @@ MonoBehaviour:
     in order to fixify the whatamajigs.
   isPickable: 1
   isBrokenObject: 0
+  isPartPlaceholder: 0
 --- !u!65 &2039017842
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14828,6 +14871,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4209544365720646548, guid: 8628f6f1100300e41b4e054e24a2168c,
+        type: 3}
+      propertyPath: m_Name
+      value: sceneManager
+      objectReference: {fileID: 0}
     - target: {fileID: 4209544365720646545, guid: 8628f6f1100300e41b4e054e24a2168c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14883,11 +14931,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4209544365720646548, guid: 8628f6f1100300e41b4e054e24a2168c,
-        type: 3}
-      propertyPath: m_Name
-      value: sceneManager
-      objectReference: {fileID: 0}
     - target: {fileID: 4209544365720646550, guid: 8628f6f1100300e41b4e054e24a2168c,
         type: 3}
       propertyPath: brokenItem
@@ -14932,6 +14975,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5625379652387963657, guid: c70ec69531f2a69408eab89cc85ead0c,
+        type: 3}
+      propertyPath: m_Name
+      value: player
+      objectReference: {fileID: 0}
     - target: {fileID: 5625379652387963653, guid: c70ec69531f2a69408eab89cc85ead0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14987,10 +15035,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5625379652387963657, guid: c70ec69531f2a69408eab89cc85ead0c,
+    - target: {fileID: 5625379652387963652, guid: c70ec69531f2a69408eab89cc85ead0c,
         type: 3}
-      propertyPath: m_Name
-      value: player
+      propertyPath: notPartsLm.m_Bits
+      value: 311
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c70ec69531f2a69408eab89cc85ead0c, type: 3}

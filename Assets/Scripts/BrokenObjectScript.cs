@@ -10,6 +10,8 @@ public class BrokenObjectScript : MonoBehaviour
     public List<GameObject> locationsOnShelf;
     public List<bool> keepPartOnObject;
 
+    public List<GameObject> correctPartTransforms;
+
     public float distanceThresholdForCorrectPlacement = 0.1f;
     public float angleThresholdForCurrentPlacement = 5f;
 
@@ -22,10 +24,27 @@ public class BrokenObjectScript : MonoBehaviour
     void DisassembleObject(){
         partsCorrectPosition = new List<Vector3>();
         partsCorrectRotation = new List<Quaternion>();
+        correctPartTransforms = new List<GameObject>();
 
         foreach(Part p in requiredParts){
             partsCorrectPosition.Add(p.transform.localPosition);
             partsCorrectRotation.Add(p.transform.localRotation);
+
+            GameObject g = new GameObject();
+            g.name = p.gameObject.name + "_ph";
+            g.transform.parent = p.transform.parent;
+            g.transform.localPosition = p.transform.localPosition;
+            g.transform.localRotation = p.transform.localRotation;
+
+            // g.AddComponent(p.GetComponent<Collider>().GetType());
+            Utilities.CopyComponent(p.GetComponent<Collider>(), g);
+            Utilities.CopyColliderProperties(p.GetComponent<Collider>(), g.GetComponent<Collider>());
+
+            ObjectInfo oi = g.AddComponent<ObjectInfo>();
+            oi.isPartPlaceholder = true;
+            g.layer = LayerMask.NameToLayer("partPlaceholder");
+            
+            correctPartTransforms.Add(g);
         }
 
         PlacePartsOnShelf();
@@ -68,6 +87,16 @@ public class BrokenObjectScript : MonoBehaviour
         }
         
         return v;
+    }
+
+    public Vector3 GetCorrectPositionOfPart(Part part){
+        int index = requiredParts.FindIndex(p => p == part);
+        return transform.TransformPoint(partsCorrectPosition[index]);
+    }
+
+    public GameObject GetPlaceholderObjForPart(Part part){
+        int index = requiredParts.FindIndex(p => p == part);
+        return correctPartTransforms[index];
     }
 
     bool CheckAllPartsPlaced(){
